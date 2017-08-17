@@ -50,4 +50,4 @@ script:
     # - find . \( -name '*.php' \) -exec php -lf {} \;
     # Run the theme through JSHint
 
-    - ./bin/phpcs -p -s -v -n . --standard=WordPress --extensions=php
+    - ./phpcs/bin/phpcs -p -s -v -n . --standard=WordPress --extensions=php
