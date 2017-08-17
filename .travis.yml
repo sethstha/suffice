@@ -40,7 +40,7 @@ before_script:
     - cd phpcs
     #PHPCS 3.x
     - ./bin/phpcs --config-set installed_paths ../wpcs
-
+    - phpenv rehash
 
 # Run test script commands.
 # Default is specific to project language.
@@ -49,5 +49,5 @@ script:
     # Search theme for PHP syntax errors.
     # - find . \( -name '*.php' \) -exec php -lf {} \;
     # Run the theme through JSHint
-   
+
     - ./bin/phpcs -p -s -v -n . --standard=WordPress --extensions=php
