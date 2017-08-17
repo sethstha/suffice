@@ -18,7 +18,7 @@ get_header(); ?>
 	do_action( 'suffice_before_body_content' ); ?>
 
 	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+		<main id="main" class="site-main" role="maisn">
 
 			<section class="error-404 not-found">
 			<?php if ( '1' !== suffice_get_option( 'suffice_show_pagetitle_bar', '1' ) ) : ?>
