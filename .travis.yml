@@ -1,4 +1,4 @@
-anguage: php
+language: php
 php:
   - '5.4'
   - '5.5'
@@ -6,3 +6,20 @@ php:
   - '7.0'
   - '7.1'
 
+before_script:
+	# Install CodeSniffer for WordPress Coding Standards checks.
+	- pyrus install pear/PHP_CodeSniffer
+	- phpenv rehash
+	# Install WordPress Coding Standards.
+	- mkdir wordpress-coding-standards && curl -L https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/archive/master.tar.gz | tar xz --strip-components=1 -C wordpress-coding-standards
+	# Hop into CodeSniffer directory.
+	- cd php-codesniffer
+	# Set install path for WordPress Coding Standards
+	# @link https://github.com/squizlabs/PHP_CodeSniffer/blob/4237c2fc98cc838730b76ee9cee316f99286a2a7/CodeSniffer.php#L1941
+	- phpcs --config-set installed_paths ../wordpress-coding-standards
+	- phpenv rehash
+	
+script:
+	# Search theme for PHP syntax errors.
+  - find . \( -name '*.php' \) -exec php -lf {} \;
+	- phpcs -p -s -v -n . --standard=WordPress --extensions=php
