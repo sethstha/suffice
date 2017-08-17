@@ -40,6 +40,7 @@ before_script:
     - cd phpcs
     #PHPCS 3.x
     - ./bin/phpcs --config-set installed_paths ../wpcs
+    - phpenv rehash
 
 # Run test script commands.
 # Default is specific to project language.
