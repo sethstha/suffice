@@ -7,7 +7,7 @@ php:
   - '7.1'
 
 before_script:
-	# Install CodeSniffer for WordPress Coding Standards checks.
+  # Install CodeSniffer for WordPress Coding Standards checks.
 	- pyrus install pear/PHP_CodeSniffer
 	- phpenv rehash
 	# Install WordPress Coding Standards.
