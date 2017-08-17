@@ -35,16 +35,13 @@ env:
 # Failures in this section will result in build status 'errored'.
 before_script:
     
-    - pear install PHP_CodeSniffer-2.8.0
-    - phpenv rehash
-    # Install WordPress Coding Standards.
-    - mkdir wordpress-coding-standards && curl -L https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/archive/master.tar.gz | tar xz --strip-components=1 -C wordpress-coding-standards
-    # Set install path for WordPress Coding Standards
-    # @link https://github.com/squizlabs/PHP_CodeSniffer/blob/4237c2fc98cc838730b76ee9cee316f99286a2a7/CodeSniffer.php#L1941
-    - phpcs --config-set installed_paths ../wordpress-coding-standards
-    # Hop into themes directory.
-    # After CodeSniffer install you should refresh your path.
-    - phpenv rehash
+    -git clone https://github.com/squizlabs/PHP_CodeSniffer.git phpcs
+    -git clone -b master https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards.git wpcs
+    -cd phpcs
+    #PHPCS 2.x
+    -./scripts/phpcs --config-set installed_paths ../wpcs
+    #PHPCS 3.x
+    -./bin/phpcs --config-set installed_paths ../wpcs
 
 
 # Run test script commands.
@@ -55,4 +52,4 @@ script:
     - find . \( -name '*.php' \) -exec php -lf {} \;
     # Run the theme through JSHint
    
-    - ./php-codesniffer/scripts/phpcs -p -s -v -n . --standard=./codesniffer.ruleset.xml --extensions=php
+    - phpcs - i
