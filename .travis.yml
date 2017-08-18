@@ -36,6 +36,7 @@ before_script:
     - ./bin/phpcs --config-set installed_paths ../wpcs
     - phpenv rehash
     - cd ..
+    - ls
 
 # Run test script commands.
 # Default is specific to project language.
@@ -45,4 +46,4 @@ script:
     # - find . \( -name '*.php' \) -exec php -lf {} \;
     # Run the theme through JSHint
 
-    - ./phpcs/bin/phpcs -p -s -v -n . --standard=WordPress --extensions=php --ignore=*/freemius/*,*/inc/kirki/*,*/phpcs/*,*/wpcs/*
+    - ./phpcs/bin/phpcs -p -s -v -n . --standard=WordPress --extensions=php --ignore=*/freemius/*,*/inc/kirki/*,*/wpcs/*
