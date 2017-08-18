@@ -13,10 +13,6 @@ php:
     - "7.0"
     - "5.6"
     - "5.5"
-    - "5.4"
-    - "5.3"
-    # Current $required_php_version for WordPress: 5.2.4
-    - "5.2"
 
 # Ditch sudo and use containers.
 # @link http://docs.travis-ci.com/user/migrating-from-legacy/#Why-migrate-to-container-based-infrastructure%3F
@@ -40,7 +36,8 @@ before_script:
     - cd phpcs
     #PHPCS 3.x
     - ./bin/phpcs --config-set installed_paths ../wpcs
-    - cd ..
+    - phpenv rehash
+    - cd project
 
 # Run test script commands.
 # Default is specific to project language.
@@ -50,4 +47,4 @@ script:
     # - find . \( -name '*.php' \) -exec php -lf {} \;
     # Run the theme through JSHint
 
-    - ./phpcs/bin/phpcs -p -s -v -n . --standard=WordPress --extensions=php
+    - ./phpcs/bin/phpcs -p -s -v -n . --standard=WordPress --extensions=php --ignore=*/freemius/*,*/inc/kirki/*
